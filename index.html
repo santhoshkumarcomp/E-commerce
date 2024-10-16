@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .fixed-image {
@@ -11,24 +19,67 @@
         height: 172px;
         object-fit: contain;
       }
+      .search-button {
+        position: absolute;
+        color: blue;
+        z-index: 1;
+        right: 36px;
+      }
     </style>
     <script>
       let a;
+      let count;
+
+      function search() {
+        console.log("in search");
+        let str = document.getElementById("txt").value;
+        let obj = a;
+        let array = new Set();
+        for (let i = 0; i < count; i++) {
+          text = obj[i]["title"];
+          text = text.toLowerCase();
+          textDesc = obj[i]["description"];
+          textDesc = textDesc.toLowerCase();
+
+          if (
+            text.match(new RegExp("\\b" + str + "\\b", "i")) ||
+            textDesc.match(new RegExp("\\b" + str + "\\b", "i"))
+          ) {
+            array.add(i);
+          }
+        }
+        console.log(array);
+        if (array.size === 0) {
+          console.log("in condition");
+          document.getElementById("imageHere").innerHTML = "";
+          document.getElementById("imageHere").innerHTML = "No results found";
+        } else {
+          document.getElementById("imageHere").innerHTML = "";
+          for (const value of array) {
+            displayCard(value);
+          }
+        }
+      }
+
       fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((json) => {
           console.log(json);
           a = json;
-          var count = Object.keys(a).length;
+          count = Object.keys(a).length;
           let i = 0;
           let identity = 0;
-          loadProducts(count);
+          loadProducts();
         });
-      function loadProducts(count) {
+
+      function loadProducts() {
+        document.getElementById("imageHere").innerHTML = "";
+        console.log("Loading products...");
         for (let i = 0; i < count; i++) {
           displayCard(i);
         }
       }
+
       function displayCard(i) {
         var card = document.createElement("div");
         card.className = "h-full w-90 flex";
@@ -45,7 +96,7 @@
         title.className = "truncate w-52 block";
         title.innerHTML = a[i]["title"];
         var anchor = document.createElement("button");
-        anchor.setAttribute("onclick", `showProduct(${i})`);
+        anchor.onclick = () => showProduct(i);
         anchor.className = "text-gray-500";
         anchor.appendChild(title);
         card.appendChild(anchor);
@@ -61,14 +112,13 @@
         rating.className = "block text-violet-400";
         rating.innerHTML = "Rating: " + a[i]["rating"].rate;
         col.appendChild(rating);
-        // document.getElementById("itemDescription").innerHTML =
-        //   a[i]["description"];
         card.appendChild(col);
         document.getElementById("imageHere").appendChild(card);
         var line = document.createElement("div");
         line.className = "h-0.5 my-3 bg-gray-300 w-full";
         document.getElementById("imageHere").appendChild(line);
       }
+
       function detailedView(i) {
         var elem = document.createElement("img");
         elem.setAttribute("src", a[i]["image"]);
@@ -104,6 +154,7 @@
         col.appendChild(rating);
         document.getElementById("imageHere").appendChild(col);
       }
+
       function showProduct(identity) {
         const myNode = document.getElementById("imageHere");
         while (myNode.firstChild) {
@@ -118,9 +169,16 @@
   </head>
   <body>
     <header
-      class="h-8 w-full bg-blue-500 text-white flex justify-center font-consolas"
+      class="h-8 w-full bg-blue-500 text-white flex gap-8 justify-center font-consolas"
     >
-      U-cart
+      <button class="ucartButton" onclick="loadProducts()">U-cart</button>
+
+      <div>
+        <input type="text" class="text-gray-700 mt-1" id="txt" />
+        <button class="search-button mt-1" onclick="search()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
     </header>
     <div id="imageHere" class="h-full w-90 block"></div>
   </body>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .fixed-image {
+        width: 172px;
+        height: 172px;
+        object-fit: contain;
+      }
+    </style>
+    <script>
+      let a;
+      fetch("https://fakestoreapi.com/products")
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json);
+          a = json;
+          var count = Object.keys(a).length;
+          let i = 0;
+          let identity = 0;
+          loadProducts(count);
+        });
+      function loadProducts(count) {
+        for (let i = 0; i < count; i++) {
+          displayCard(i);
+        }
+      }
+      function displayCard(i) {
+        var card = document.createElement("div");
+        card.className = "h-full w-90 flex";
+
+        var elem = document.createElement("img");
+        elem.setAttribute("src", a[i]["image"]);
+        elem.setAttribute("height", "64");
+        elem.setAttribute("width", "64");
+        elem.className = "inline-flex border-solid border-2";
+
+        card.appendChild(elem);
+        var title = document.createElement("h1");
+        title.innerHTML = "";
+        title.className = "truncate w-52 block";
+        title.innerHTML = a[i]["title"];
+        var anchor = document.createElement("button");
+        anchor.setAttribute("onclick", `showProduct(${i})`);
+        anchor.className = "text-gray-500";
+        anchor.appendChild(title);
+        card.appendChild(anchor);
+        var col = document.createElement("div");
+        col.className = "inline-block";
+        var price = document.createElement("h4");
+        price.innerHTML = "";
+        price.className = "block text-green-400";
+        price.innerHTML = " ₹. " + a[i]["price"];
+        col.appendChild(price);
+        var rating = document.createElement("h5");
+        rating.innerHTML = "";
+        rating.className = "block text-violet-400";
+        rating.innerHTML = "Rating: " + a[i]["rating"].rate;
+        col.appendChild(rating);
+        // document.getElementById("itemDescription").innerHTML =
+        //   a[i]["description"];
+        card.appendChild(col);
+        document.getElementById("imageHere").appendChild(card);
+        var line = document.createElement("div");
+        line.className = "h-0.5 my-3 bg-gray-300 w-full";
+        document.getElementById("imageHere").appendChild(line);
+      }
+      function detailedView(i) {
+        var elem = document.createElement("img");
+        elem.setAttribute("src", a[i]["image"]);
+        elem.setAttribute("height", "172");
+        elem.setAttribute("width", "172");
+        elem.className = "fixed-image fixed left-24 top-12 block";
+        document.getElementById("imageHere").appendChild(elem);
+
+        var title = document.createElement("h1");
+        title.innerHTML = "";
+        title.className = "relative truncate top-64 bold italic text-center ";
+        title.innerHTML = a[i]["title"];
+        document.getElementById("imageHere").appendChild(title);
+
+        var description = document.createElement("p");
+        description.innerHTML = "";
+        description.className =
+          "relative text-gray-700 top-72 text-sm text-justify mx-3 ";
+        description.innerHTML = a[i]["description"];
+        document.getElementById("imageHere").appendChild(description);
+
+        var col = document.createElement("div");
+        col.className = "relative grid top-80 gap-44 grid-cols-2";
+        var price = document.createElement("h4");
+        price.innerHTML = "";
+        price.className = "text-green-400";
+        price.innerHTML = " ₹. " + a[i]["price"];
+        col.appendChild(price);
+        var rating = document.createElement("h5");
+        rating.innerHTML = "";
+        rating.className = "text-violet-400";
+        rating.innerHTML = "Rating: " + a[i]["rating"].rate;
+        col.appendChild(rating);
+        document.getElementById("imageHere").appendChild(col);
+      }
+      function showProduct(identity) {
+        const myNode = document.getElementById("imageHere");
+        while (myNode.firstChild) {
+          myNode.removeChild(myNode.lastChild);
+        }
+
+        detailedView(identity);
+
+        // Here you can add code to display more information about the product
+      }
+    </script>
+  </head>
+  <body>
+    <header
+      class="h-8 w-full bg-blue-500 text-white flex justify-center font-consolas"
+    >
+      U-cart
+    </header>
+    <div id="imageHere" class="h-full w-90 block"></div>
+  </body>
+</html>

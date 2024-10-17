@@ -29,6 +29,7 @@
     <script>
       let a;
       let count;
+      element = null;
 
       function search() {
         console.log("in search");
@@ -79,6 +80,14 @@
           displayCard(i);
         }
       }
+      function cardClose() {
+        console.log("in card close");
+        var element = document.querySelector(".floatcard");
+        if (element) {
+          console.log("in card closing");
+          element.remove();
+        }
+      }
 
       function displayCard(i) {
         var card = document.createElement("div");
@@ -96,7 +105,7 @@
         title.className = "truncate w-52 block";
         title.innerHTML = a[i]["title"];
         var anchor = document.createElement("button");
-        anchor.onclick = () => showProduct(i);
+        anchor.onclick = () => detailedView(i);
         anchor.className = "text-gray-500";
         anchor.appendChild(title);
         card.appendChild(anchor);
@@ -104,12 +113,12 @@
         col.className = "inline-block";
         var price = document.createElement("h4");
         price.innerHTML = "";
-        price.className = "block text-green-400";
+        price.className = "block text-green-700";
         price.innerHTML = " ₹. " + a[i]["price"];
         col.appendChild(price);
         var rating = document.createElement("h5");
         rating.innerHTML = "";
-        rating.className = "block text-violet-400";
+        rating.className = "block text-violet-600";
         rating.innerHTML = "Rating: " + a[i]["rating"].rate;
         col.appendChild(rating);
         card.appendChild(col);
@@ -120,39 +129,57 @@
       }
 
       function detailedView(i) {
+        var floatingcard = document.createElement("div");
+        floatingcard.className =
+          "fixed floatcard  top-12 z-20 bg-gray-700 border-solid rounded-lg w-full h-1/2 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
+        var btn = document.createElement("button");
+        btn.innerHTML = "x";
+        btn.className = " mx-2 justify-right inline";
+        btn.onclick = () => cardClose();
+        floatingcard.appendChild(btn);
+        element = floatingcard;
+
+        var div1 = document.createElement("div");
+        div1.className = "grid gap-1 grid-cols-2 ";
         var elem = document.createElement("img");
         elem.setAttribute("src", a[i]["image"]);
         elem.setAttribute("height", "172");
         elem.setAttribute("width", "172");
-        elem.className = "fixed-image fixed left-24 top-12 block";
-        document.getElementById("imageHere").appendChild(elem);
+        elem.className = "fixed-image fixed  top-4 block mb-4";
+        div1.appendChild(elem);
 
         var title = document.createElement("h1");
         title.innerHTML = "";
-        title.className = "relative truncate top-64 bold italic text-center ";
+        title.className = "relative  top-56 bold italic text-center ";
         title.innerHTML = a[i]["title"];
-        document.getElementById("imageHere").appendChild(title);
+        div1.appendChild(title);
+        floatingcard.appendChild(div1);
+        var div2 = document.createElement("div");
+        div2.className = "grid gap-1 grid-cols-2";
 
         var description = document.createElement("p");
         description.innerHTML = "";
         description.className =
-          "relative text-gray-700 top-72 text-sm text-justify mx-3 ";
+          "fixed   overflow-y-auto text-gray-700 top-4 left-44 h-60  text-sm text-justify mr-4 mb-8 ";
         description.innerHTML = a[i]["description"];
-        document.getElementById("imageHere").appendChild(description);
+        div2.appendChild(description);
 
         var col = document.createElement("div");
-        col.className = "relative grid top-80 gap-44 grid-cols-2";
+        col.className = "fixed grid top-72 left-48 gap-4 grid-cols-2";
         var price = document.createElement("h4");
         price.innerHTML = "";
-        price.className = "text-green-400";
+        price.className = "text-green-700 font-semibold";
         price.innerHTML = " ₹. " + a[i]["price"];
         col.appendChild(price);
         var rating = document.createElement("h5");
         rating.innerHTML = "";
-        rating.className = "text-violet-400";
+        rating.className = "text-violet-600";
         rating.innerHTML = "Rating: " + a[i]["rating"].rate;
         col.appendChild(rating);
-        document.getElementById("imageHere").appendChild(col);
+        div2.appendChild(col);
+        floatingcard.appendChild(div2);
+
+        document.getElementById("head").appendChild(floatingcard);
       }
 
       function showProduct(identity) {
@@ -169,17 +196,20 @@
   </head>
   <body>
     <header
-      class="h-8 w-full bg-blue-500 text-white flex gap-8 justify-center font-consolas"
+      id="head"
+      class="sticky h-8 z-10 w-full bg-blue-500 text-white flex gap-8 justify-center font-consolas"
     >
-      <button class="ucartButton" onclick="loadProducts()">U-cart</button>
+      <button class="z-10" onclick="loadProducts()">U-cart</button>
 
-      <div>
+      <div class="z-10">
         <input type="text" class="text-gray-700 mt-1" id="txt" />
         <button class="search-button mt-1" onclick="search()">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
     </header>
-    <div id="imageHere" class="h-full w-90 block"></div>
+    <!-- <img src="Background.jpeg" alt="BG" class="w-full h-full cover fixed z-0" /> -->
+    <!-- // -->
+    <div id="imageHere" class="h-full w-90 block z-10"></div>
   </body>
 </html>

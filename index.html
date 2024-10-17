@@ -91,18 +91,19 @@
 
       function displayCard(i) {
         var card = document.createElement("div");
-        card.className = "h-full w-90 flex";
+        card.className = "h-full w-90 flex md:block md:border solid ";
 
         var elem = document.createElement("img");
         elem.setAttribute("src", a[i]["image"]);
         elem.setAttribute("height", "64");
         elem.setAttribute("width", "64");
-        elem.className = "inline-flex border-solid border-2";
+        elem.className =
+          "relative inline-flex   border-solid border-2 md:left-16 md:w-43 md:h-43";
 
         card.appendChild(elem);
         var title = document.createElement("h1");
         title.innerHTML = "";
-        title.className = "truncate w-52 block";
+        title.className = "truncate w-52 block ";
         title.innerHTML = a[i]["title"];
         var anchor = document.createElement("button");
         anchor.onclick = () => detailedView(i);
@@ -124,14 +125,14 @@
         card.appendChild(col);
         document.getElementById("imageHere").appendChild(card);
         var line = document.createElement("div");
-        line.className = "h-0.5 my-3 bg-gray-300 w-full";
+        line.className = "h-0.5 my-3 bg-gray-300 w-full md:hidden";
         document.getElementById("imageHere").appendChild(line);
       }
 
       function detailedView(i) {
         var floatingcard = document.createElement("div");
         floatingcard.className =
-          "fixed floatcard  top-12 z-20 bg-gray-700 border-solid rounded-lg w-full h-1/2 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
+          "fixed floatcard  top-12 z-20 bg-white-700 border-solid rounded-lg w-full h-1/2 md:w-4/5 md:h-2/5 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
         var btn = document.createElement("button");
         btn.innerHTML = "x";
         btn.className = " mx-2 justify-right inline";
@@ -150,7 +151,8 @@
 
         var title = document.createElement("h1");
         title.innerHTML = "";
-        title.className = "relative  top-56 bold italic text-center ";
+        title.className =
+          "relative  top-56 md:text-lg bold italic text-center md:absolute md:text-center md:left-52 ";
         title.innerHTML = a[i]["title"];
         div1.appendChild(title);
         floatingcard.appendChild(div1);
@@ -165,7 +167,8 @@
         div2.appendChild(description);
 
         var col = document.createElement("div");
-        col.className = "fixed grid top-72 left-48 gap-4 grid-cols-2";
+        col.className =
+          "relative grid top-72 left-48 gap-4 grid-cols-2  md:top-64 ";
         var price = document.createElement("h4");
         price.innerHTML = "";
         price.className = "text-green-700 font-semibold";
@@ -210,6 +213,9 @@
     </header>
     <!-- <img src="Background.jpeg" alt="BG" class="w-full h-full cover fixed z-0" /> -->
     <!-- // -->
-    <div id="imageHere" class="h-full w-90 block z-10"></div>
+    <div
+      id="imageHere"
+      class="h-full w-90 block z-10 md:mt-2 md:flex md:grid md:grid-cols-4 md:gap-6 md:shadow-cyan-500/50"
+    ></div>
   </body>
 </html>

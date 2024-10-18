@@ -91,19 +91,20 @@
 
       function displayCard(i) {
         var card = document.createElement("div");
-        card.className = "h-full w-90 flex md:block md:border solid ";
+        card.className =
+          " bg-white m-2 h-full w-90 flex md:block md:border solid md:rounded-lg md:shadow-blue-600 md:shadow-md ";
 
         var elem = document.createElement("img");
         elem.setAttribute("src", a[i]["image"]);
         elem.setAttribute("height", "64");
         elem.setAttribute("width", "64");
         elem.className =
-          "relative inline-flex   border-solid border-2 md:left-16 md:w-43 md:h-43";
+          "relative inline-flex   border-solid border-2 md:left-16 md:mt-2 md:w-43 md:h-43 lg:left-30 lg:block l";
 
         card.appendChild(elem);
         var title = document.createElement("h1");
         title.innerHTML = "";
-        title.className = "truncate w-52 block ";
+        title.className = " w-52 block md-block";
         title.innerHTML = a[i]["title"];
         var anchor = document.createElement("button");
         anchor.onclick = () => detailedView(i);
@@ -114,25 +115,23 @@
         col.className = "inline-block";
         var price = document.createElement("h4");
         price.innerHTML = "";
-        price.className = "block text-green-700";
+        price.className = "block text-green-700 mt-2 ml-2";
         price.innerHTML = " ₹. " + a[i]["price"];
         col.appendChild(price);
         var rating = document.createElement("h5");
         rating.innerHTML = "";
-        rating.className = "block text-violet-600";
+        rating.className = "block text-violet-600 mt-2   ml-2";
         rating.innerHTML = "Rating: " + a[i]["rating"].rate;
         col.appendChild(rating);
         card.appendChild(col);
         document.getElementById("imageHere").appendChild(card);
-        var line = document.createElement("div");
-        line.className = "h-0.5 my-3 bg-gray-300 w-full md:hidden";
-        document.getElementById("imageHere").appendChild(line);
       }
 
       function detailedView(i) {
+        cardClose();
         var floatingcard = document.createElement("div");
         floatingcard.className =
-          "fixed floatcard  top-12 z-20 bg-white-700 border-solid rounded-lg w-full h-1/2 md:w-4/5 md:h-2/5 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
+          "fixed floatcard  top-12 z-20 bg-gray-400 border-solid rounded-lg w-full h-4/6 md:shadow-blue-600 md:shadow-md md:w-4/5 md:h-2/5 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
         var btn = document.createElement("button");
         btn.innerHTML = "x";
         btn.className = " mx-2 justify-right inline";
@@ -162,13 +161,13 @@
         var description = document.createElement("p");
         description.innerHTML = "";
         description.className =
-          "fixed   overflow-y-auto text-gray-700 top-4 left-44 h-60  text-sm text-justify mr-4 mb-8 ";
+          "fixed   overflow-y-auto text-gray-700 top-4 left-44 h-56  text-sm text-justify mr-4 mb-8 ";
         description.innerHTML = a[i]["description"];
         div2.appendChild(description);
 
         var col = document.createElement("div");
         col.className =
-          "relative grid top-72 left-48 gap-4 grid-cols-2  md:top-64 ";
+          "relative grid top-72 left-24 gap-4 grid-cols-2 md:48  md:top-64 ";
         var price = document.createElement("h4");
         price.innerHTML = "";
         price.className = "text-green-700 font-semibold";
@@ -197,7 +196,7 @@
       }
     </script>
   </head>
-  <body>
+  <body class="bg-gray-400">
     <header
       id="head"
       class="sticky h-8 z-10 w-full bg-blue-500 text-white flex gap-8 justify-center font-consolas"
@@ -215,7 +214,7 @@
     <!-- // -->
     <div
       id="imageHere"
-      class="h-full w-90 block z-10 md:mt-2 md:flex md:grid md:grid-cols-4 md:gap-6 md:shadow-cyan-500/50"
+      class="m -1 h-full w-90 block z-10 md:mt-2 md:flex md:grid md:grid-cols-4 md:gap-6 md:shadow-cyan-500/50 md:m-2"
     ></div>
   </body>
 </html>

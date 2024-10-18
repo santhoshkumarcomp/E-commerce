@@ -95,19 +95,19 @@
       function displayCard(i) {
         var card = document.createElement("div");
         card.className =
-          " bg-white m-2 h-full w-90 flex md:block md:border solid md:rounded-lg md:shadow-blue-600 md:shadow-md ";
+          " bg-white m-2 h-full w-90 md:w-84 flex md:block md:border solid md:rounded-lg md:shadow-blue-600 md:shadow-md ";
 
         var elem = document.createElement("img");
         elem.setAttribute("src", a[i]["image"]);
         elem.setAttribute("height", "64");
         elem.setAttribute("width", "64");
         elem.className =
-          "relative inline-flex   border-solid border-2 md:left-16 md:mt-2 md:w-43 md:h-43 lg:left-30 lg:block l";
+          "relative inline-flex   border-solid border-2 md:left-12 md:text-sm md:mt-2 md:w-43 md:h-43 lg:left-30 lg:block ";
 
         card.appendChild(elem);
         var title = document.createElement("h1");
         title.innerHTML = "";
-        title.className = " w-52 block md-block";
+        title.className = " w-52 md:w-40 block md-inline-block ";
         title.innerHTML = a[i]["title"];
         var anchor = document.createElement("button");
         anchor.onclick = () => detailedView(i);
@@ -134,7 +134,7 @@
         cardClose();
         var floatingcard = document.createElement("div");
         floatingcard.className =
-          "fixed floatcard  top-12 z-20 bg-gray-400 border-solid rounded-lg w-full h-4/6 md:shadow-blue-600 md:shadow-md md:w-4/5 md:h-2/5 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
+          "fixed floatcard  top-12 z-20 bg-gray-400 border-solid rounded-lg w-full h-4/6 md:shadow-blue-600 md:shadow-md md:w-4/5 md:h-2/4 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
         var btn = document.createElement("button");
         btn.innerHTML = "x";
         btn.className = " mx-2 justify-right inline";
@@ -154,7 +154,7 @@
         var title = document.createElement("h1");
         title.innerHTML = "";
         title.className =
-          "relative  top-56 md:text-lg bold italic text-center md:absolute md:text-center md:left-52 ";
+          "relative  top-56 md:text-lg bold italic text-center md:absolute md:text-center md:left-32 ";
         title.innerHTML = a[i]["title"];
         div1.appendChild(title);
         floatingcard.appendChild(div1);
@@ -170,7 +170,7 @@
 
         var col = document.createElement("div");
         col.className =
-          "relative grid top-72 left-24 gap-4 grid-cols-2 md:48  md:top-64 ";
+          "relative grid top-72 left-24 gap-4 grid-cols-2 md:left-48  md:top-64 ";
         var price = document.createElement("h4");
         price.innerHTML = "";
         price.className = "text-green-700 font-semibold";

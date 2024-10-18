@@ -134,7 +134,7 @@
         cardClose();
         var floatingcard = document.createElement("div");
         floatingcard.className =
-          "fixed floatcard  top-12 z-20 bg-gray-400 border-solid rounded-lg w-full h-4/6 md:shadow-blue-600 md:shadow-md md:w-4/5 md:h-2/4  lg:h-3/4 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
+          "fixed floatcard  top-12 z-20 bg-gray-400 border-solid rounded-lg w-full h-4/6 md:shadow-blue-600 md:shadow-md md:w-4/5 md:h-2/4  lg:h-3/5 xl:h-2/5 bg-opacity-40 backdrop-saturate-180 backdrop-blur-lg ";
         var btn = document.createElement("button");
         btn.innerHTML = "x";
         btn.className = " mx-2 justify-right inline";
@@ -208,7 +208,10 @@
 
       <div class="z-10">
         <input type="text" class="text-gray-700 mt-1" id="txt" />
-        <button class="search-button mt-1" onclick="search()">
+        <button
+          class="search-button mt-1 md:right-64 lg:absolute lg:right-128 md:absolute"
+          onclick="search()"
+        >
           <i class="fa-solid fa-magnifying-glass -blue-500"></i>
         </button>
       </div>

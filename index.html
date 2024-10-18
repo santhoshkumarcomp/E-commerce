@@ -28,6 +28,11 @@
       i {
         color: #2196f3;
       }
+      @media (min-width: 1024px) {
+        .search-button {
+          right: 387px !important;
+        }
+      }
     </style>
     <script>
       let a;
@@ -209,7 +214,7 @@
       <div class="z-10">
         <input type="text" class="text-gray-700 mt-1" id="txt" />
         <button
-          class="search-button mt-1 md:right-64 lg:absolute lg:right-128 md:absolute"
+          class="search-button mt-1 md:right-64 lg:absolute lg:right-256 md:absolute"
           onclick="search()"
         >
           <i class="fa-solid fa-magnifying-glass -blue-500"></i>

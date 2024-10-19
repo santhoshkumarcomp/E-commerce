@@ -207,6 +207,15 @@
 
         // Here you can add code to display more information about the product
       }
+      function categoryWise(category) {
+        document.getElementById("imageHere").innerHTML = "";
+
+        for (let i = 0; i < count; i++) {
+          if (a[i].category === category) {
+            displayCard(i);
+          }
+        }
+      }
     </script>
   </head>
   <body class="bg-gray-400">
@@ -223,6 +232,24 @@
           onclick="search()"
         >
           <i class="fa-solid fa-magnifying-glass -blue-500"></i>
+        </button>
+        <button
+          class="text-white px-1"
+          onclick="categoryWise(`men's clothing`)"
+        >
+          Men's clothing
+        </button>
+        <button
+          class="text-white px-1"
+          onclick="categoryWise(`women's clothing`)"
+        >
+          Women's clothing
+        </button>
+        <button class="text-white px-1" onclick="categoryWise(`jewelery`)">
+          Jewelery
+        </button>
+        <button class="text-white px-1" onclick="categoryWise(`electronics`)">
+          Electronics
         </button>
       </div>
     </header>

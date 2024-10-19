@@ -228,33 +228,38 @@
       <div class="z-10">
         <input type="text" class="text-gray-700 mt-1" id="txt" />
         <button
-          class="search-button mt-1 md:right-64 lg:absolute lg:right-256 md:absolute"
+          class="search-button mt-1 md:left-120 lg:absolute lg:right-256 md:absolute"
           onclick="search()"
         >
-          <i class="fa-solid fa-magnifying-glass -blue-500"></i>
+          <i class="fa-solid fa-magnifying-glass -blue-900"></i>
         </button>
         <button
-          class="text-white px-1"
+          class="hidden md:inline-block md:text-white md:px-1"
           onclick="categoryWise(`men's clothing`)"
         >
           Men's clothing
         </button>
         <button
-          class="text-white px-1"
+          class="hidden md:inline-block md:text-white md:px-1"
           onclick="categoryWise(`women's clothing`)"
         >
           Women's clothing
         </button>
-        <button class="text-white px-1" onclick="categoryWise(`jewelery`)">
+        <button
+          class="hidden md:inline-block md:text-white md:px-1"
+          onclick="categoryWise(`jewelery`)"
+        >
           Jewelery
         </button>
-        <button class="text-white px-1" onclick="categoryWise(`electronics`)">
+        <button
+          class="hidden md:inline-block md:text-white md:px-1"
+          onclick="categoryWise(`electronics`)"
+        >
           Electronics
         </button>
       </div>
     </header>
-    <!-- <img src="Background.jpeg" alt="BG" class="w-full h-full cover fixed z-0" /> -->
-    <!-- // -->
+
     <div
       id="imageHere"
       class="m -1 h-full w-90 block z-10 md:mt-2 md:flex md:grid md:grid-cols-4 md:gap-2 md:shadow-cyan-500/50 md:m-2"

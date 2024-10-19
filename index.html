@@ -19,24 +19,9 @@
         height: 172px;
         object-fit: contain;
       }
-      .search-button {
-        position: absolute;
 
-        z-index: 1;
-        right: 68px;
-      }
       i {
         color: #2196f3;
-      }
-      @media (min-width: 1024px) {
-        .search-button {
-          right: 387px !important;
-        }
-      }
-      @media (min-width: 1280px) {
-        .search-button {
-          right: 596px !important;
-        }
       }
     </style>
     <script>
@@ -228,13 +213,13 @@
       <div class="z-10">
         <input type="text" class="text-gray-700 mt-1" id="txt" />
         <button
-          class="search-button mt-1 md:left-120 lg:absolute lg:right-256 md:absolute"
+          class="absolute z-10 mt-1 md:left-120 lg:right-256"
           onclick="search()"
         >
           <i class="fa-solid fa-magnifying-glass -blue-900"></i>
         </button>
         <button
-          class="hidden md:inline-block md:text-white md:px-1"
+          class="hidden md:inline-block md:text-white md:px-4"
           onclick="categoryWise(`men's clothing`)"
         >
           Men's clothing
